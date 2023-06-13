@@ -30,14 +30,10 @@ func getGroupID(chat string) (string, error) {
 
 func (s *IMServiceImpl) Send(ctx context.Context, req *rpc.SendRequest) (*rpc.SendResponse, error) {
 	resp := rpc.NewSendResponse()
-
 	sendTime := time.Now()
 
-	message := &rpc.Message{
-		SendTime: sendTime.Unix(),
-		Chat:     req.Message.Text,
-		Sender:   req.Message.Sender,
-	}
+	message := req.GetMessage()
+	message.SetSendTime(sendTime.Unix())
 
 	groupId, err := getGroupID(req.Message.Chat)
 	redisClient.SaveMessageToRedis(ctx, groupId, message)
