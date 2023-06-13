@@ -41,18 +41,6 @@ localhost:8080/api/send
 }
 ```
 
-## To send Message
-
-POST localhost:8080/api/send
-
-```json
-{
-  "text": "Hello World",
-  "chat":"Nishita-Mini",
-  "Sender": "Nishita"
-}
-```
-
 ## To pull all Messages
 
 GET localhost:8080/api/pull
